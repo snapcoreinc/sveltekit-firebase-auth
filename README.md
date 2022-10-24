@@ -1,25 +1,48 @@
-# sveltekit-example
+# firebase-auth-boilerplate
 
-Example to show firebase auth used on the client and accessed via a Svelte Store.
+This project is an example to show Firebase auth used on the client and accessed via a Svelte Store.
 
-Updated to show lazy-loading the Firebase 9.0 SDK for faster startup / higher lighthouse score.
-
-Updated to show syncing the client-side auth state with the server to set a cookie and provide a SvelteKit "session"
-
-~~Updated to use the new Firebase 9.0 SDK, so lazy-loading firebase from the CDN has been removed.~~
-
-~~Firebase SDK Packages are lazy-loaded from the CDN. This ensures that the application starts up quickly (rather than waiting for the large firebase bundles to load) and also auth can load and initialize before other packages (e.g. firestore isn't loaded unless the user is signed in and on a route that requests data).~~
+- Client-Server sync of session via a HttpOnly cookie
+- Demonstrates using Firebase auth as an IAM
+- Authentication using Google & Email
+- Asynchronous loading of the profile
+- Lazy loading of Firebase 9.0 SDK
+- Proper handling of authentication when linking to a protected pages
+- Use of the Firebase emulator for local testing
 
 The auth store ensures that the firebase code is only loaded and called when the page is running in the browser and when the auth status has been referenced. Comment out the `<Auth />` import in `$layout.svelte` and notice that no firebase libs are requested.
-
-~~A simpler example _could_ just include the firebase CDN scripts in the `app.html` file but I find this approach keeps the page zippy while also avoiding re-bundling the firebase SDK into the app so it has the benefit of potentially loading faster via the CDN.~~
 
 ## Roadmap
 
 Some additional pieces I'll try to add:
 
-- ~~how the firebase-admin SDK can also be referenced and used to set firebase session cookies in order to enable firebase auth checks inside server endpoints and also to server-side-render (SSR) pages with data coming from firestore.~~
 - auth guards to prevent routes rendering or to show an "access denied" message based on auth status
 - role-based UI customization where elements are shown or hidden based on auth claims (e.g. hide an "edit" button if the user doesn't have "author" permissions)
 - how to use SvelteKit stores with Firestore to simplify querying / subscribing to data
 - how to use Firestore with SSR and SPA mode working efficiently (transparent hand-off of SSR data to a client-side subscription for live updates)
+
+## Startup
+
+### Install the Firebase CLI
+
+```bash
+$ pnpm i -g firebase-tools
+$ firebase login
+$ firebase projects:list
+```
+
+### Get parameters from FireBase Console
+
+edit `.env` and fill the missing data
+
+### Start the Firebase Emulator
+
+```shell
+$ pnpm emulators:start &
+```
+
+### Start the app
+
+```shell
+$ pnpm dev
+```

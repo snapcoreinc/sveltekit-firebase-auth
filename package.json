@@ -6,19 +6,32 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"emulators:start": "firebase emulators:start"
+		"emulators:start": "firebase emulators:start",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@firebase/app-types": "^0.7.0",
+		"@firebase/app-types": "0.8.1",
 		"@sveltejs/adapter-node": "next",
 		"@sveltejs/kit": "next",
-		"firebase": "^9.10.0",
-		"firebase-admin": "^11.0.1",
-		"svelte": "^3.50.1",
-		"svelte-preprocess": "^4.10.7",
-		"tslib": "^2.4.0",
-		"typescript": "^4.8.3",
-		"vite": "^3.1.2"
+		"@typescript-eslint/eslint-plugin": "5.42.1",
+		"@typescript-eslint/parser": "5.42.1",
+		"@vitejs/plugin-basic-ssl": "0.1.2",
+		"firebase": "9.13.0",
+		"firebase-admin": "11.2.0",
+		"eslint": "8.27.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-plugin-svelte3": "4.0.0",
+		"prettier": "2.7.1",
+		"prettier-plugin-svelte": "2.8.0",
+		"svelte": "3.52.0",
+		"svelte-check": "2.9.2",
+		"svelte-preprocess": "4.10.7",
+		"tslib": "2.4.1",
+		"typescript": "4.8.4",
+		"vite": "3.2.3"
 	},
 	"engines": {
 		"node": ">= 14"
